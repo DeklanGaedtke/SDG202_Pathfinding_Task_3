@@ -88,7 +88,7 @@ public class Grid : MonoBehaviour
         {
             foreach (Node n in grid)
             {
-                Gizmos.color = (n.walkable) ? Color.white : Color.red;
+                Gizmos.color = (n.walkable) ?Color.white : Color.red;
 
                 if (path != null)
                 {

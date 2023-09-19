@@ -1,27 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Diagnostics;
 
 public class Pathfinding : MonoBehaviour
 {
-
     public Transform seeker, target;
 
 
 
     Grid grid;
-    private void Awake()
+    void Awake()
     {
         grid = GetComponent<Grid>();
     }
 
-    private void Update()
+
+    void Update()
     {
-        FindPath(seeker.position, target.position);
+        if (Input.GetButtonDown("Jump"))
+        {
+            FindPath(seeker.position, target.position);
+        }
     }
 
     void FindPath(Vector3 startPos, Vector3 targetPos)
     {
+        Stopwatch sw = new Stopwatch();
+        sw.Start();
+
         Node startNode = grid.NodeFromWorldPoint(startPos);
         Node targetNode = grid.NodeFromWorldPoint(targetPos);
 
@@ -42,8 +49,12 @@ public class Pathfinding : MonoBehaviour
             openSet.Remove(currentNode);
             closeSet.Add(currentNode);
 
+            //Finds the path
             if (currentNode == targetNode)
             {
+                sw.Stop();
+                print("Path Found: " + sw.ElapsedMilliseconds + " ms");
+
                 RetracePath(startNode, targetNode);
                 return;
             }
