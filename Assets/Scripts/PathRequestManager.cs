@@ -9,6 +9,22 @@ public class PathRequestManager : MonoBehaviour
 	PathRequest currentPathRequest;
 
 	static PathRequestManager instance;
+	static PathRequestManager Instance
+    {
+        get
+        {
+			if(instance == null)
+            {
+				instance = FindObjectOfType<PathRequestManager>();
+				if(instance == null)
+                {
+					GameObject go = new GameObject("PathRequestManager");
+					instance = go.AddComponent<PathRequestManager>();
+				}
+            }
+			return instance;
+        }
+    }
 	Pathfinding pathfinding;
 
 	bool isProcessingPath;
@@ -22,8 +38,8 @@ public class PathRequestManager : MonoBehaviour
 	public static void RequestPath(Vector3 pathStart, Vector3 pathEnd, Action<Vector3[], bool> callback)
 	{
 		PathRequest newRequest = new PathRequest(pathStart, pathEnd, callback);
-		instance.pathRequestQueue.Enqueue(newRequest);
-		instance.TryProcessNext();
+		Instance.pathRequestQueue.Enqueue(newRequest);
+		Instance.TryProcessNext();
 	}
 
 	void TryProcessNext()
