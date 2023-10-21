@@ -58,10 +58,12 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Node.cs" />
     <Compile Include="Assets\Scripts\Heap.cs" />
+    <Compile Include="Assets\Scripts\ClickMovement.cs" />
     <Compile Include="Assets\Scripts\Unit.cs" />
     <Compile Include="Assets\Scripts\Grid.cs" />
     <Compile Include="Assets\Scripts\PathRequestManager.cs" />
     <Compile Include="Assets\Scripts\Pathfinding.cs" />
+    <Compile Include="Assets\Scripts\UnitDistance.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

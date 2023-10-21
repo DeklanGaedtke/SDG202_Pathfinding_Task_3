@@ -21,6 +21,7 @@ public class Pathfinding : MonoBehaviour
 		StartCoroutine(FindPath(startPos, targetPos));
 	}
 
+	//Checks path from start pos to the target pos for any obstacles
 	IEnumerator FindPath(Vector3 startPos, Vector3 targetPos)
 	{
 
@@ -110,6 +111,7 @@ public class Pathfinding : MonoBehaviour
 		return waypoints.ToArray();
 	}
 
+	//Calculates the Path
 	int GetDistance(Node nodeA, Node nodeB)
 	{
 		int dstX = Mathf.Abs(nodeA.gridX - nodeB.gridX);
