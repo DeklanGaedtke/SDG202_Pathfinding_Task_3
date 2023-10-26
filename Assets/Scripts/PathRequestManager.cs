@@ -9,6 +9,7 @@ public class PathRequestManager : MonoBehaviour
 	PathRequest currentPathRequest;
 
 	static PathRequestManager instance;
+	//Creates an intance of the path request manger in the scene
 	static PathRequestManager Instance
     {
         get
@@ -29,12 +30,14 @@ public class PathRequestManager : MonoBehaviour
 
 	bool isProcessingPath;
 
+
 	void Awake()
 	{
 		instance = this;
 		pathfinding = GetComponent<Pathfinding>();
 	}
 
+	//Requesting path form start to finish
 	public static void RequestPath(Vector3 pathStart, Vector3 pathEnd, Action<Vector3[], bool> callback)
 	{
 		PathRequest newRequest = new PathRequest(pathStart, pathEnd, callback);
@@ -42,6 +45,7 @@ public class PathRequestManager : MonoBehaviour
 		Instance.TryProcessNext();
 	}
 
+	//Tries to find the path if the path is not found already
 	void TryProcessNext()
 	{
 		if (!isProcessingPath && pathRequestQueue.Count > 0)
@@ -51,7 +55,8 @@ public class PathRequestManager : MonoBehaviour
 			pathfinding.StartFindPath(currentPathRequest.pathStart, currentPathRequest.pathEnd);
 		}
 	}
-
+	
+	//Checks to see if the path has been successful
 	public void FinishedProcessingPath(Vector3[] path, bool success)
 	{
 		currentPathRequest.callback(path, success);
@@ -59,6 +64,7 @@ public class PathRequestManager : MonoBehaviour
 		TryProcessNext();
 	}
 
+	//Request for the paths creation
 	struct PathRequest
 	{
 		public Vector3 pathStart;

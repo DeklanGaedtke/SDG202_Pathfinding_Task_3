@@ -7,13 +7,7 @@ public class ClickMovement : MonoBehaviour
 
     public GameObject target;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    //The clicking works but the units dont update to move to the new target
     void Update()
     {
 

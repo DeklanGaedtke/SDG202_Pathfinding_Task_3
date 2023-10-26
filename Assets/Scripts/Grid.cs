@@ -14,6 +14,7 @@ public class Grid : MonoBehaviour
 	float nodeDiameter;
 	int gridSizeX, gridSizeY;
 
+	//Creates the grid when play is pressed in the editor
 	void Awake()
 	{
 		nodeDiameter = nodeRadius * 2;
@@ -22,6 +23,7 @@ public class Grid : MonoBehaviour
 		CreateGrid();
 	}
 
+	//The Max size of the grid
 	public int MaxSize
 	{
 		get
@@ -30,6 +32,7 @@ public class Grid : MonoBehaviour
 		}
 	}
 
+	//The math for creating the grid
 	void CreateGrid()
 	{
 		grid = new Node[gridSizeX, gridSizeY];
@@ -46,6 +49,7 @@ public class Grid : MonoBehaviour
 		}
 	}
 
+	//Creates the squares within the grid
 	public List<Node> GetNeighbours(Node node)
 	{
 		List<Node> neighbours = new List<Node>();
@@ -70,7 +74,7 @@ public class Grid : MonoBehaviour
 		return neighbours;
 	}
 
-
+	//Use the world position to create nodes for the grid
 	public Node NodeFromWorldPoint(Vector3 worldPosition)
 	{
 		float percentX = (worldPosition.x + gridWorldSize.x / 2) / gridWorldSize.x;
@@ -83,16 +87,17 @@ public class Grid : MonoBehaviour
 		return grid[x, y];
 	}
 
-	void OnDrawGizmos()
-	{
-		Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
-		if (grid != null && displayGridGizmos)
-		{
-			foreach (Node n in grid)
-			{
-				Gizmos.color = (n.walkable) ? Color.white : Color.red;
-				Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - .1f));
-			}
-		}
-	}
+	//Draws the grid using unity gizmos
+    void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
+        if (grid != null && displayGridGizmos)
+        {
+            foreach (Node n in grid)
+            {
+                Gizmos.color = (n.walkable) ? Color.white : Color.red;
+                Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - .1f));
+            }
+        }
+    }
 }

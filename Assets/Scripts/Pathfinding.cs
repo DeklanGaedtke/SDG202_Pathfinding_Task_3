@@ -5,24 +5,29 @@ using System;
 
 public class Pathfinding : MonoBehaviour
 {
+	Unit unit;
+	[SerializeField] GameObject Seeker;
 
 	PathRequestManager requestManager;
 	Grid grid;
 
-	void Awake()
+    public object Vector3 { get; internal set; }
+
+    void Awake()
 	{
 		requestManager = GetComponent<PathRequestManager>();
 		grid = GetComponent<Grid>();
+		unit = GetComponent<Unit>();
 	}
 
-
-	public void StartFindPath(Vector3 startPos, Vector3 targetPos)
+	//Starts finding the path
+    public void StartFindPath(Vector3 startPos, Vector3 targetPos)
 	{
 		StartCoroutine(FindPath(startPos, targetPos));
 	}
 
 	//Checks path from start pos to the target pos for any obstacles
-	IEnumerator FindPath(Vector3 startPos, Vector3 targetPos)
+	public IEnumerator FindPath(Vector3 startPos, Vector3 targetPos)
 	{
 
 		Vector3[] waypoints = new Vector3[0];
@@ -78,6 +83,7 @@ public class Pathfinding : MonoBehaviour
 
 	}
 
+	//Retraces the Path to the parent node
 	Vector3[] RetracePath(Node startNode, Node endNode)
 	{
 		List<Node> path = new List<Node>();
@@ -94,6 +100,7 @@ public class Pathfinding : MonoBehaviour
 
 	}
 
+	//Method to create a simplified path using waypoints
 	Vector3[] SimplifyPath(List<Node> path)
 	{
 		List<Vector3> waypoints = new List<Vector3>();
@@ -111,8 +118,8 @@ public class Pathfinding : MonoBehaviour
 		return waypoints.ToArray();
 	}
 
-	//Calculates the Path
-	int GetDistance(Node nodeA, Node nodeB)
+	//Calculates the path distance
+	public int GetDistance(Node nodeA, Node nodeB)
 	{
 		int dstX = Mathf.Abs(nodeA.gridX - nodeB.gridX);
 		int dstY = Mathf.Abs(nodeA.gridY - nodeB.gridY);

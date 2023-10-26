@@ -13,6 +13,7 @@ public class Heap<T> where T : IHeapItem<T>
 		items = new T[maxHeapSize];
 	}
 
+	//Adds count to the sqaure
 	public void Add(T item)
 	{
 		item.HeapIndex = currentItemCount;
@@ -21,6 +22,7 @@ public class Heap<T> where T : IHeapItem<T>
 		currentItemCount++;
 	}
 
+	//Removes the lowest F cost
 	public T RemoveFirst()
 	{
 		T firstItem = items[0];
@@ -31,10 +33,12 @@ public class Heap<T> where T : IHeapItem<T>
 		return firstItem;
 	}
 
+	//Used updates the node
 	public void UpdateItem(T item)
 	{
 		SortUp(item);
 	}
+
 
 	public int Count
 	{
@@ -44,11 +48,13 @@ public class Heap<T> where T : IHeapItem<T>
 		}
 	}
 
+
 	public bool Contains(T item)
 	{
 		return Equals(items[item.HeapIndex], item);
 	}
 
+	//Used to calculate if the parent node is less than its child
 	void SortDown(T item)
 	{
 		while (true)
@@ -87,6 +93,7 @@ public class Heap<T> where T : IHeapItem<T>
 		}
 	}
 
+	//Checks if child is less than parent and will swap it
 	void SortUp(T item)
 	{
 		int parentIndex = (item.HeapIndex - 1) / 2;
@@ -107,6 +114,7 @@ public class Heap<T> where T : IHeapItem<T>
 		}
 	}
 
+	//If its lower than its parent its will swap it with its parent until it is not
 	void Swap(T itemA, T itemB)
 	{
 		items[itemA.HeapIndex] = itemB;

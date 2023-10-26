@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1366493691711514422}
   - component: {fileID: 1366493691711514423}
   - component: {fileID: 1366493691711514424}
-  - component: {fileID: 1366493691711514418}
   - component: {fileID: 1366493691711514420}
   - component: {fileID: -7201999239072340896}
   m_Layer: 0
@@ -20,7 +19,7 @@ GameObject:
   m_TagString: unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &1366493691711514421
 Transform:
@@ -97,22 +96,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.7
+  m_Radius: 0.6
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1366493691711514418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1366493691711514425}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fd1943c2d9af76449ff71ff929e8583, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1366493691711514420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,6 +113,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 2907425316162331441, guid: 99fa3445c80d4fa498bf1de3f2c00112, type: 3}
+  currrentSpeed: 3
+  numberOfRays: 17
+  angle: 90
+  rayRange: 2
 --- !u!54 &-7201999239072340896
 Rigidbody:
   m_ObjectHideFlags: 0

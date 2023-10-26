@@ -14,6 +14,7 @@ public class Node : IHeapItem<Node>
 	public Node parent;
 	int heapIndex;
 
+	//Used to classify the nodes
 	public Node(bool _walkable, Vector3 _worldPos, int _gridX, int _gridY)
 	{
 		walkable = _walkable;
@@ -21,7 +22,8 @@ public class Node : IHeapItem<Node>
 		gridX = _gridX;
 		gridY = _gridY;
 	}
-
+	
+	//Creates the cost of f
 	public int fCost
 	{
 		get
@@ -30,6 +32,7 @@ public class Node : IHeapItem<Node>
 		}
 	}
 
+	//Returns the heap index value
 	public int HeapIndex
 	{
 		get
@@ -42,6 +45,7 @@ public class Node : IHeapItem<Node>
 		}
 	}
 
+	//Compares the cost of each node for path creation
 	public int CompareTo(Node nodeToCompare)
 	{
 		int compare = fCost.CompareTo(nodeToCompare.fCost);
